@@ -1,0 +1,26 @@
+tree "Root"
+    tree "version1"
+
+tree "version1"
+    fallback
+        sequence
+            IsGoalieBlue
+            fallback
+                sequence 
+                    IsShouldClearTheAreaBlue
+                    ClearAreaBlue
+                DefendBlue 0.3
+           
+        sequence
+            IsChaserBlue
+            tree "Chaser"
+        DefendBlue 0.7
+
+tree "Chaser"
+    fallback
+        sequence
+            IsClosestToTheBallBlue
+            DribbleBlue
+        sequence
+            IsBlockingGoalieBlue
+            DisturbEnemyBlue
