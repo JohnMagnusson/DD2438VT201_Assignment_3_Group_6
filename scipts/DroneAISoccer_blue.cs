@@ -90,7 +90,7 @@ public class DroneAISoccer_blue : MonoBehaviour
         if(gameObject==goalie)
         {
             isBlockingEnemy = false;
-            maxSpeed = 10f;
+            maxSpeed = 100000000f;
             isGoalie = true;
         }
         return gameObject == goalie;
@@ -195,6 +195,7 @@ public class DroneAISoccer_blue : MonoBehaviour
         
         Vector3 direction = ball.transform.position - ballAndGoalCollisionPoint;
         Vector3 offset = coefficient * direction;
+
         if(ballAndGoalCollisionPoint==own_goal.transform.position)
         {
             if (offset.magnitude < 1.2f * goalSize)
@@ -204,6 +205,7 @@ public class DroneAISoccer_blue : MonoBehaviour
         }
         else
         {
+            ballVelocity.y = 0f;
             Vector3 ballAndGoalAreaIntersectPoint = new Vector3();
             RaycastHit[] hits = Physics.RaycastAll(ball.transform.position, ballVelocity, stadiumSize);
             foreach (RaycastHit hit in hits)
@@ -216,7 +218,7 @@ public class DroneAISoccer_blue : MonoBehaviour
             }
 
             Debug.DrawLine(ballAndGoalCollisionPoint, ballAndGoalAreaIntersectPoint, Color.cyan, 0.1f);
-
+            
             float minimumOffset = Vector3.Distance(ballAndGoalAreaIntersectPoint, ballAndGoalCollisionPoint);
             if (offset.magnitude < minimumOffset)
             {

@@ -90,7 +90,7 @@ public class DroneAISoccer_red : MonoBehaviour
         if (gameObject == goalie)
         {
             isBlockingEnemy = false;
-            maxSpeed = 10f;
+            maxSpeed = 1000000000f;
             isGoalie = true;
         }
         return gameObject == goalie;
@@ -204,6 +204,7 @@ public class DroneAISoccer_red : MonoBehaviour
         }
         else
         {
+            ballVelocity.y = 0f;
             Vector3 ballAndGoalAreaIntersectPoint = new Vector3();
             RaycastHit[] hits = Physics.RaycastAll(ball.transform.position, ballVelocity, stadiumSize);
             foreach (RaycastHit hit in hits)
